@@ -6,11 +6,10 @@ from tqdm import tqdm
 import yaml
 
 FILE_FORMAT = ".png"
-START_IDX = 0
+START_IDX = 1
 
 yolo_directory = Path().resolve() / "datasets" / "YOLO"
 coco_output_directory = Path().resolve() / "datasets" / "COCO"
-
 categories = []
 dataset_file_path = yolo_directory / "dataset.yaml"
 
