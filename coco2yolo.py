@@ -1,6 +1,10 @@
 from pathlib import Path
 import json
 import shutil
+from tqdm import tqdm
+
+FILE_FORMAT = ".png"
+CATEGORY_ID_SHIFT = 0
 
 # Path to COCO
 image_directory = Path().resolve() / "datasets" / "COCO"
@@ -21,7 +25,7 @@ for split in ["train", "valid", "test"]:
 
     coco_json_path = list(split_path.glob("*.json"))
     if not coco_json_path:
-        print(f"Файл JSON не найден для раздела {split}")
+        print(f"Could not find annotations for {split} images")
         continue
 
     with open(coco_json_path[0], "r", encoding="utf-8") as f:
@@ -30,7 +34,8 @@ for split in ["train", "valid", "test"]:
     category_mapping = {cat["id"]: cat["name"] for cat in coco_data["categories"]}
     category_id_mapping = {cat["name"]: cat["id"] for cat in coco_data["categories"]}
 
-    for image in coco_data["images"]:
+    print(f"Started converting {split} images")
+    for image in tqdm(coco_data["images"]):
         image_id = image["id"]
         file_name = image["file_name"]
         source_image_path = split_path / file_name
@@ -38,7 +43,7 @@ for split in ["train", "valid", "test"]:
         if source_image_path.exists():
             shutil.copy(source_image_path, output_directory / "images" / file_name)
 
-        label_file_path = output_directory / "labels" / f"{file_name.replace('.jpg', '.txt')}"
+        label_file_path = output_directory / "labels" / f"{file_name.replace(FILE_FORMAT, '.txt')}"
 
         with open(label_file_path, "w") as label_file:
             for annotation in coco_data["annotations"]:
@@ -49,6 +54,16 @@ for split in ["train", "valid", "test"]:
                     height = annotation["bbox"][3] / image["height"]
 
                     category_id = category_id_mapping[category_mapping[annotation["category_id"]]]
-                    label_file.write(f"{category_id - 1} {x_center} {y_center} {width} {height}\n")
+                    label_file.write(f"{category_id - CATEGORY_ID_SHIFT} {x_center} {y_center} {width} {height}\n")
 
-print("Конвертация завершена!")
+
+yaml_file_path = output_base_directory / "dataset.yaml"
+with open(yaml_file_path, "w") as yaml_file:
+    yaml_file.write(f"path: {str(output_base_directory)}\n")
+    yaml_file.write('train: ./train\n')
+    yaml_file.write('val: ./valid\n')
+    yaml_file.write('test: ./test\n')
+    yaml_file.write(f'nc: {len(coco_data["categories"])}\n')
+    yaml_file.write(f'names: {list(category_mapping.values())}\n')
+
+print("Done!")
