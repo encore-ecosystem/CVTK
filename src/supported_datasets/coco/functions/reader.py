@@ -1,4 +1,4 @@
-from examples.cv_dataset_converter.utils.coco_dataset import COCO_Dataset
+from src.supported_datasets.coco.dataset import COCO_Dataset
 from nodeflow.builtin import PathVariable
 
 import json

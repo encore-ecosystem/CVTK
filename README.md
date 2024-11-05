@@ -15,7 +15,7 @@ CVTK - Computer Vision ToolKit. This is a cmd utilit for manipulating CV dataset
 
 # Usage
 ```bash
-cvtk
+src
 ```
 
 # Installing

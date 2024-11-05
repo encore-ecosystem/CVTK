@@ -8,6 +8,8 @@ authors = [
     "Pavel Lekomtsev <polekomtsev@edu.hse.ru>",
 ]
 readme = "README.md"
+package-mode = false
+
 
 [tool.poetry.dependencies]
 python = "^3.10"
@@ -24,4 +26,4 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
-cvtk = "main:main"
+cvtk = "cvtk.main:main"
