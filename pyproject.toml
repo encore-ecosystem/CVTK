@@ -2,12 +2,21 @@
 name = "js-to-yo-and-vice-versa"
 version = "0.1.0"
 description = ""
-authors = ["Pavel Lekomtsev <polekomtsev@edu.hse.ru>"]
+authors = [
+    "Vladislav Tyurin",
+    "Maksim Shushkevich <m.e.shushkevich@yandex.com>",
+    "Pavel Lekomtsev <polekomtsev@edu.hse.ru>",
+]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.12"
+python = "^3.10"
 opencv-python = "^4.10.0.84"
+nodeflow = "^0.0.4"
+pyyaml = "^6.0.2"
+tqdm = "^4.66.6"
+shapely = "^2.0.6"
+pillow = "^11.0.0"
 
 
 [build-system]
