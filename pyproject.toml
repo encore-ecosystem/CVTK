@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "js-to-yo-and-vice-versa"
+name = "cvtk"
 version = "0.1.0"
 description = ""
 authors = [
@@ -22,3 +22,6 @@ pillow = "^11.0.0"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+cvtk = "main:main"
