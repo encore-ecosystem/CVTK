@@ -1,4 +1,4 @@
-from examples.cv_dataset_converter.utils.coco_dataset import COCO_Dataset
+from src.supported_datasets.coco.dataset import COCO_Dataset
 from nodeflow.builtin import PathVariable, Result
 
 import shutil
@@ -11,14 +11,14 @@ def coco_writer(dataset: COCO_Dataset, target_path: PathVariable) -> Result:
     for split in ["train", "test", "valid"]:
         (root / split).mkdir(parents=True, exist_ok=True)
 
-        for image_path in coco_dataset.images[split].values():
+        for image_path in dataset.images[split].values():
             shutil.copy(
                 src = image_path,
                 dst = root / split / image_path.name
             )
 
         with open(root / split / '_annotations.json', 'w') as json_file:
-            json.dump(coco_dataset.anns[split], json_file, indent=4)
+            json.dump(dataset.anns[split], json_file, indent=4)
 
     return Result(True)
 

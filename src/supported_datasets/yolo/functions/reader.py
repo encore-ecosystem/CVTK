@@ -1,4 +1,4 @@
-from src.supported_datasets.yolo import YOLO_Dataset
+from src.supported_datasets.yolo.dataset import YOLO_Dataset
 from nodeflow.builtin import PathVariable
 import yaml
 
@@ -35,6 +35,7 @@ def yolo_reader(path_to_dataset: PathVariable) -> YOLO_Dataset:
         anns      = annotations,
         images    = images,
     )
+
 
 
 __all__ = [
