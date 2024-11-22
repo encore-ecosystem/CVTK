@@ -13,13 +13,13 @@ files = [
 
 [[package]]
 name = "nodeflow"
-version = "0.0.4"
+version = "0.1.0"
 description = ""
 optional = false
 python-versions = "<4.0,>=3.10"
 files = [
-    {file = "nodeflow-0.0.4-py3-none-any.whl", hash = "sha256:170117a1df854c9942f89004de718bc3d35a7c80324f6b6552671451f42c58d9"},
-    {file = "nodeflow-0.0.4.tar.gz", hash = "sha256:f31ec20908e60acc8c758a2609ed6c3c8410c467ae4ba285efff0736403f668f"},
+    {file = "nodeflow-0.1.0-py3-none-any.whl", hash = "sha256:05b4a4182e6996e0f00e2858cf1efcf520e942b4d0a6c9bd909a7de28f3453b9"},
+    {file = "nodeflow-0.1.0.tar.gz", hash = "sha256:f70389a1f4071c2dab91eae94b3e28a41688526966ed6a35beaff064feaba100"},
 ]
 
 [[package]]
@@ -324,13 +324,13 @@ test = ["pytest", "pytest-cov"]
 
 [[package]]
 name = "tqdm"
-version = "4.66.6"
+version = "4.67.0"
 description = "Fast, Extensible Progress Meter"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "tqdm-4.66.6-py3-none-any.whl", hash = "sha256:223e8b5359c2efc4b30555531f09e9f2f3589bcd7fdd389271191031b49b7a63"},
-    {file = "tqdm-4.66.6.tar.gz", hash = "sha256:4bdd694238bef1485ce839d67967ab50af8f9272aab687c0d7702a01da0be090"},
+    {file = "tqdm-4.67.0-py3-none-any.whl", hash = "sha256:0cd8af9d56911acab92182e88d763100d4788bdf421d251616040cc4d44863be"},
+    {file = "tqdm-4.67.0.tar.gz", hash = "sha256:fe5a6f95e6fe0b9755e9469b77b9c3cf850048224ecaa8293d7d2d31f97d869a"},
 ]
 
 [package.dependencies]
@@ -338,6 +338,7 @@ colorama = {version = "*", markers = "platform_system == \"Windows\""}
 
 [package.extras]
 dev = ["pytest (>=6)", "pytest-cov", "pytest-timeout", "pytest-xdist"]
+discord = ["requests"]
 notebook = ["ipywidgets (>=6)"]
 slack = ["slack-sdk"]
 telegram = ["requests"]
@@ -345,4 +346,4 @@ telegram = ["requests"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "3c4f07e519bf27b52b5c067fa739717888a05b4146a25f7099857f5b2db4ff5b"
+content-hash = "aa124612cb16c0fb9dc5e5ad9bad79b03d49ff59ee43bea2d6819f35dc18a034"

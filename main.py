@@ -1,4 +1,4 @@
-from src.pages.page import page as main_page
+from pages import view
 from configparser import ConfigParser
 from src import PROGRAM_ROOT, print_logo
 
@@ -10,7 +10,7 @@ def main():
     config.read(PROGRAM_ROOT / 'config.ini')
 
     print_logo(width=64)
-    main_page()
+    view()
 
 
 if __name__ == '__main__':

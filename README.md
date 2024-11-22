@@ -15,7 +15,7 @@ CVTK - Computer Vision ToolKit. This is a cmd utilit for manipulating CV dataset
 
 # Usage
 ```bash
-src
+cvtk
 ```
 
 # Installing
@@ -23,7 +23,7 @@ Requires poetry and python version **3.10 or later**
 ```bash
 git clone https://github.com/encore-ecosystem/CVTK.git
 cd CVTK
-poetry install
+pip3 install .
 ```
 
 # Contributing

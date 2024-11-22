@@ -1,11 +1,9 @@
-from nodeflow import func2node, Dispenser
+from nodeflow import Dispenser
 from nodeflow.builtin import PathVariable
 
 from src.supported_datasets import IMPLICIT_ADAPTERS
 from nodeflow.converter import Converter
 from pathlib import Path
-from enum import Enum
-
 from src.supported_datasets.coco.dataset import COCO_Dataset
 from src.supported_datasets.coco.functions.reader import coco_reader
 from src.supported_datasets.coco.functions.writer import coco_writer
@@ -14,32 +12,25 @@ from src.supported_datasets.yolo.functions.reader import yolo_reader
 from src.supported_datasets.yolo.functions.writer import yolo_writer
 
 
-class DatasetPath(str, Enum):
-    YOLO = 'yolo'
-    COCO = 'coco'
-
-
-def page():
-    options = [DatasetPath.YOLO, DatasetPath.COCO]
+def view():
+    options = ['YOLO', 'COCO']
 
     dataset_types = {
-        DatasetPath.COCO: COCO_Dataset,
-        DatasetPath.YOLO: YOLO_Dataset,
+        'YOLO' : YOLO_Dataset,
+        'COCO' : COCO_Dataset,
     }
 
     readers = {
-        DatasetPath.COCO: coco_reader,
-        DatasetPath.YOLO: yolo_reader,
+        'YOLO' : yolo_reader,
+        'COCO' : coco_reader,
     }
 
     writers = {
-        DatasetPath.COCO: coco_writer,
-        DatasetPath.YOLO: yolo_writer,
+        'YOLO' : yolo_writer,
+        'COCO' : coco_writer,
     }
     while True:
         try:
-            # Input
-            print("<ctrl+c to back>")
             dataset_path = Path(input("Enter path to dataset: ")).resolve()
             if not dataset_path.exists():
                 print("Could not find dataset!")
@@ -63,10 +54,10 @@ def page():
             # Input type
             print("Select type of dataset:")
             for i, option in enumerate(options):
-                print(f"{i}: {option.value}")
+                print(f"{i}: {option}")
 
             idx = input('>>> ')
-            if not (idx.isdigit() and int(idx) < len(options)):
+            if not (idx.isdigit() and int(idx) in range(len(options))):
                 print("Invalid option. Please try again")
                 continue
 
@@ -75,10 +66,10 @@ def page():
             # Target type
             print("Select target type: ")
             for i, option in enumerate(options):
-                print(f"{i}: {option.value}")
+                print(f"{i}: {option}")
 
             idx = input('>>> ')
-            if not (idx.isdigit() and int(idx) < len(options)):
+            if not (idx.isdigit() and int(idx) in range(len(options))):
                 print("Invalid option. Please try again")
                 continue
 
@@ -89,17 +80,16 @@ def page():
                 continue
 
             # Converting
-            Dispenser(
-                dataset = Converter(IMPLICIT_ADAPTERS).convert(
-                    variable = PathVariable(dataset_path) >> func2node(readers[input_type]),
-                    to_type  = dataset_types[target_type],
-                ),
-                target_path = PathVariable(output_folder),
-            ) >> func2node(writers[target_type])
+            with Converter(IMPLICIT_ADAPTERS):
+                Dispenser(
+                    dataset     = PathVariable(dataset_path) >> readers[input_type],
+                    target_path = PathVariable(output_folder),
+                ) >> writers[target_type]
 
         except KeyboardInterrupt:
             return
 
+
 __all__ = [
-    'page'
+    'view'
 ]
