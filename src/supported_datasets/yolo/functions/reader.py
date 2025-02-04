@@ -20,14 +20,14 @@ def yolo_reader(path_to_dataset: PathVariable) -> YOLO_Dataset:
     for split in ["train", "test", "valid"]:
         annotations[split], images[split] = {}, {}
 
-        for label_file_path in (path_to_dataset / split / "labels").glob("*.txt"):
+        path_ = path_to_dataset / split / "labels"
+        for label_file_path in path_.glob("*.txt"):
             with open(label_file_path, "r") as label_file:
                 annotations[split][label_file_path.name] = label_file.readlines()
 
         images_directory = path_to_dataset / split / "images"
         for image_file_path in images_directory.iterdir():
-            if image_file_path.suffix in ['.jpg', '.jpeg', '.png']:
-                images[split][image_file_path.stem] = images_directory / image_file_path
+            images[split][image_file_path.stem] = images_directory / image_file_path
 
     return YOLO_Dataset(
         path      = path_to_dataset,
