@@ -2,16 +2,16 @@ from nodeflow import Dispenser
 from nodeflow.builtin import PathVariable
 from nodeflow import func2node
 
-from src.supported_datasets import IMPLICIT_ADAPTERS, YOLO2MVP_Adapter
+from cvtk.supported_datasets import IMPLICIT_ADAPTERS, YOLO2MVP_Adapter
 from nodeflow.converter import Converter
 from pathlib import Path
-from src.supported_datasets.coco.dataset import COCO_Dataset
-from src.supported_datasets.coco.functions.reader import coco_reader
-from src.supported_datasets.coco.functions.writer import coco_writer
-from src.supported_datasets.mvp import MVP_Dataset, mvp_reader, mvp_writer
-from src.supported_datasets.yolo.dataset import YOLO_Dataset
-from src.supported_datasets.yolo.functions.reader import yolo_reader
-from src.supported_datasets.yolo.functions.writer import yolo_writer
+from cvtk.supported_datasets.coco.dataset import COCO_Dataset
+from cvtk.supported_datasets.coco.functions.reader import coco_reader
+from cvtk.supported_datasets.coco.functions.writer import coco_writer
+from cvtk.supported_datasets.mvp import MVP_Dataset, mvp_reader, mvp_writer
+from cvtk.supported_datasets.yolo.dataset import YOLO_Dataset
+from cvtk.supported_datasets.yolo.functions.reader import yolo_reader
+from cvtk.supported_datasets.yolo.functions.writer import yolo_writer
 
 
 def view():

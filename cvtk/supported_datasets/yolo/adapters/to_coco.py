@@ -1,5 +1,5 @@
-from src.supported_datasets.yolo.dataset import YOLO_Dataset
-from src.supported_datasets.coco.dataset import COCO_Dataset
+from cvtk.supported_datasets.yolo.dataset import YOLO_Dataset
+from cvtk.supported_datasets.coco.dataset import COCO_Dataset
 
 from shapely.geometry.polygon import Polygon
 

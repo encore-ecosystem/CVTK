@@ -1,4 +1,4 @@
-from src.supported_datasets.coco.dataset import COCO_Dataset
+from cvtk.supported_datasets.coco.dataset import COCO_Dataset
 from nodeflow.builtin import PathVariable
 
 import json

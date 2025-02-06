@@ -1,4 +1,4 @@
-from src.supported_datasets.yolo.dataset import YOLO_Dataset
+from cvtk.supported_datasets.yolo.dataset import YOLO_Dataset
 from nodeflow.builtin import PathVariable, Result
 
 import shutil

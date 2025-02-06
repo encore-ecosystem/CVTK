@@ -2,11 +2,11 @@ from functools import reduce
 from nodeflow import Converter, Dispenser
 from nodeflow.builtin import PathVariable
 
-from src.utils import determine_dataset
+from cvtk.utils import determine_dataset
 from pathlib import Path
 import os
-from src.supported_datasets import IMPLICIT_ADAPTERS, yolo_writer, coco_writer
-from src.utils import combine_coco_datasets
+from cvtk.supported_datasets import IMPLICIT_ADAPTERS, yolo_writer, coco_writer
+from cvtk.utils import combine_coco_datasets
 
 
 def view():

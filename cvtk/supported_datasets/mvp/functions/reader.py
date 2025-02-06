@@ -1,4 +1,4 @@
-from src.supported_datasets.mvp.dataset import MVP_Dataset
+from cvtk.supported_datasets.mvp.dataset import MVP_Dataset
 from nodeflow.builtin import PathVariable
 import tomllib
 

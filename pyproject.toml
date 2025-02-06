@@ -8,7 +8,7 @@ authors = [
     "Pavel Lekomtsev <polekomtsev@edu.hse.ru>",
 ]
 readme = "README.md"
-package-mode = false
+package-mode = true
 
 
 [tool.poetry.dependencies]
