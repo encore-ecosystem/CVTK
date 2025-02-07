@@ -20,7 +20,8 @@ def yolo_writer(dataset: YOLO_Dataset, target_path: PathVariable) -> Result:
             )
 
             with open(root / split / 'labels' / f"{image_path.stem}.txt", 'w') as label_file:
-                label_file.write(dataset.anns[split][image_path.stem])
+                anns_str = dataset.anns[split][image_path.stem].__str__()[2:-2].replace("'", '').replace(', ', '\n')
+                label_file.write(anns_str)
 
     with open(root / 'data.yaml', "w") as yaml_file:
         data_yaml = {

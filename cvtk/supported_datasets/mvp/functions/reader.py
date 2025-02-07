@@ -1,6 +1,7 @@
 from cvtk.supported_datasets.mvp.dataset import MVP_Dataset
 from nodeflow.builtin import PathVariable
 import tomllib
+import json
 
 
 def mvp_reader(path_to_dataset: PathVariable) -> MVP_Dataset:
@@ -14,9 +15,9 @@ def mvp_reader(path_to_dataset: PathVariable) -> MVP_Dataset:
     for split in ["train", "test", "valid"]:
         annotations[split], images[split] = {}, {}
 
-        for label_file_path in (path_to_dataset / split / "attributes").glob("*.toml"):
+        for label_file_path in (path_to_dataset / split / "attributes").glob("*.json"):
             with open(label_file_path, "rb") as label_file:
-                annotations[split][label_file_path.stem] = tomllib.load(label_file)
+                annotations[split][label_file_path.stem] = json.load(label_file)
 
         for image_file_path in (path_to_dataset / split / "images").glob("*"):
             images[split][image_file_path.stem] = image_file_path
