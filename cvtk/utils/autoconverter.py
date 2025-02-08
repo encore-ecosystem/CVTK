@@ -1,10 +1,9 @@
-from pathlib import Path
-from typing import Type
+from cvtk.supported_datasets import *
+from cvtk.utils.determinator import *
 
 from nodeflow import Converter, Variable
-
-from .determinator import determine_dataset
-from cvtk.supported_datasets import *
+from pathlib import Path
+from typing import Type
 
 
 def autoconvert(dataset_path: Path, target_type: Type[Variable]) -> Variable:
@@ -14,6 +13,7 @@ def autoconvert(dataset_path: Path, target_type: Type[Variable]) -> Variable:
         determine_dataset(dataset_path),
         target_type
     )
+
 
 __all__ = [
     'autoconvert',

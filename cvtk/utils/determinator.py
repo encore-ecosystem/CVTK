@@ -1,17 +1,16 @@
-from nodeflow.builtin import PathVariable
+from cvtk.supported_datasets import YOLO_Dataset, COCO_Dataset, MVP_Dataset
+from cvtk import AbstractDataset
 from pathlib import Path
 
-from cvtk import mvp_reader
-from cvtk.supported_datasets import yolo_reader, coco_reader
 
+def determine_dataset(dataset_path: Path) -> AbstractDataset:
+    datasets = [YOLO_Dataset, MVP_Dataset, COCO_Dataset]
 
-def determine_dataset(dataset_path: Path):
-    if (dataset_path / 'data.yaml').exists():
-        return yolo_reader(PathVariable(dataset_path))
-    elif (dataset_path / 'manifest.toml').exists():
-        return mvp_reader(PathVariable(dataset_path))
-    else:
-        return coco_reader(PathVariable(dataset_path))
+    for dataset in datasets:
+        if dataset.is_dataset(dataset_path):
+            return dataset.read(dataset_path)
+
+    raise ValueError("Dataset not found")
 
 
 __all__ = [
