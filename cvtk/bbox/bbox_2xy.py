@@ -1,7 +1,6 @@
-from PIL.ImageFile import ImageFile, Image
-
-from .bbox import Bbox
 from shapely.geometry import box
+from PIL.Image import Image
+from .bbox import Bbox
 
 
 class Bbox_2xy(Bbox):
@@ -15,7 +14,7 @@ class Bbox_2xy(Bbox):
     def get_poly(self) -> list[tuple[float, float]]:
         return list(box(*self.bbox).exterior.coords)
 
-    def crop_on(self, image: ImageFile) -> Image:
+    def crop_on(self, image: Image) -> Image:
         normalized = self.to_image_scale(image.width, image.height)
         return image.crop(normalized.bbox)
 

@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from PIL.ImageFile import ImageFile
+from PIL.Image import Image
 
 
 class Bbox(ABC):
@@ -17,7 +17,7 @@ class Bbox(ABC):
         raise NotImplementedError
 
     @abstractmethod
-    def crop_on(self, image: ImageFile):
+    def crop_on(self, image: Image):
         raise NotImplementedError
 
     @abstractmethod

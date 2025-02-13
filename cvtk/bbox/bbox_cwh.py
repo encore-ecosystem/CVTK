@@ -1,8 +1,7 @@
-from PIL.ImageFile import ImageFile
-
-from .bbox import Bbox
 from shapely.geometry import Polygon, box
 from cvtk.bbox.bbox_2xy import Bbox_2xy
+from PIL.Image import Image
+from .bbox import Bbox
 
 
 class Bbox_CWH(Bbox):
@@ -24,7 +23,7 @@ class Bbox_CWH(Bbox):
     def get_poly(self) -> list[tuple[float, float]]:
         return list(self.get_shapely_polygon().exterior.coords)
 
-    def crop_on(self, image: ImageFile):
+    def crop_on(self, image: Image):
         raise NotImplementedError()
 
     def __and__(self, other: 'Bbox_CWH') -> float:
