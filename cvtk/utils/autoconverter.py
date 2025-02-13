@@ -6,7 +6,7 @@ from pathlib import Path
 from typing import Type
 
 
-def autoconvert(dataset_path: Path, target_type: Type[Variable]) -> Variable:
+def autoconvert(dataset_path: Path, target_type: Type[AbstractDataset]) -> Variable:
     return Converter(
         adapters=IMPLICIT_ADAPTERS
     ).convert(
