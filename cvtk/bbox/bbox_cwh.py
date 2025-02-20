@@ -24,7 +24,9 @@ class Bbox_CWH(Bbox):
         return list(self.get_shapely_polygon().exterior.coords)
 
     def crop_on(self, image: Image):
-        raise NotImplementedError()
+        x, y, w, h = self.to_image_scale(image.width, image.height)
+        l, u, r, b = x - w//2, y - h//2, x + w//2, y + h//2
+        return image.crop((l, u, r, b))
 
     def __and__(self, other: 'Bbox_CWH') -> float:
         if isinstance(other, Bbox_CWH):
