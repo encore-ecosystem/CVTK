@@ -21,4 +21,4 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [tool.uv.sources]
-nodeflow = { git = "https://github.com/encore-ecosystem/NodeFlow" }
+nodeflow = { git = "https://github.com/encore-ecosystem/NodeFlow", branch = "dev" }

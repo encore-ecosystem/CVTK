@@ -26,7 +26,7 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
-    { name = "nodeflow", git = "https://github.com/encore-ecosystem/NodeFlow" },
+    { name = "nodeflow", git = "https://github.com/encore-ecosystem/NodeFlow?branch=dev" },
     { name = "pillow", specifier = ">=11.1.0" },
     { name = "pyyaml", specifier = ">=6.0.2" },
     { name = "shapely", specifier = ">=2.1.0" },
@@ -36,8 +36,8 @@ requires-dist = [
 
 [[package]]
 name = "nodeflow"
-version = "0.1.1"
-source = { git = "https://github.com/encore-ecosystem/NodeFlow#87f33eda66273d25755cab7dd7574868d4738fda" }
+version = "1.0.0"
+source = { git = "https://github.com/encore-ecosystem/NodeFlow?branch=dev#aed1375d7edc412102b84fbec1c9e4c121d1ba1b" }
 
 [[package]]
 name = "numpy"
