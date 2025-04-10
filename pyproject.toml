@@ -1,29 +1,22 @@
-[tool.poetry]
+[project]
 name = "cvtk"
-version = "0.2.1"
-description = ""
-authors = [
-    "Vladislav Tyurin",
-    "Maksim Shushkevich <m.e.shushkevich@yandex.com>",
-    "Pavel Lekomtsev <polekomtsev@edu.hse.ru>",
-]
+version = "0.2.0"
+description = "Computer Vision ToolKit"
 readme = "README.md"
-package-mode = true
-
-
-[tool.poetry.dependencies]
-python = ">=3.10, <4.0"
-nodeflow = "^0.1.1"
-pyyaml = "^6.0.2"
-tqdm = "^4.66.6"
-shapely = "^2.0.6"
-pillow = "^11.0.0"
-toml = "^0.10.2"
-
+authors = [
+    { name = "Maksim Shushkevich", email = "meshushkevich@edu.hse.ru" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "nodeflow",
+    "pillow>=11.1.0",
+    "shapely>=2.1.0",
+    "toml>=0.10.2",
+]
 
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
-[tool.poetry.scripts]
-cvtk = "cvtk.main:main"
+[tool.uv.sources]
+nodeflow = { git = "https://github.com/encore-ecosystem/NodeFlow" }

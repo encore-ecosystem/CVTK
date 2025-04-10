@@ -1,5 +1,3 @@
-from .abstract import *
-
 from .coco import *
 from .yolo import *
 from .mvp  import *
