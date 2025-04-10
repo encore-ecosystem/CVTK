@@ -1,9 +1,8 @@
-from abc import ABCMeta, abstractmethod
-from nodeflow import Variable
+from abc import ABC, abstractmethod
 from pathlib import Path
 
 
-class AbstractDataset(Variable, metaclass=ABCMeta):
+class AbstractDataset(ABC):
     def __init__(self, path: Path):
         super().__init__(path)
 

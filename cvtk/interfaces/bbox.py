@@ -1,11 +1,9 @@
-from abc import ABCMeta, abstractmethod
+from abc import ABC, abstractmethod
+from PIL.Image import Image
 from typing import Any
 
-from PIL.Image import Image
-from nodeflow import Variable
 
-
-class Bbox(Variable, metaclass=ABCMeta):
+class Bbox(ABC):
     def __init__(self, bbox: list[float], value: Any, category: int = -1, confidence: float = 0):
         super().__init__(value)
         self.bbox       = list(bbox)
