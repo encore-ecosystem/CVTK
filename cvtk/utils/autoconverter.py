@@ -1,12 +1,11 @@
-from cvtk.supported_datasets import *
-from cvtk.utils.determinator import *
-
-from nodeflow import Converter, Variable
+from cvtk import IMPLICIT_ADAPTERS, determine_dataset
+from cvtk.interfaces import AbstractDataset
+from nodeflow import Converter
 from pathlib import Path
 from typing import Type
 
 
-def autoconvert(dataset_path: Path, target_type: Type[AbstractDataset]) -> Variable:
+def autoconvert_dataset(dataset_path: Path, target_type: Type[AbstractDataset]) -> AbstractDataset:
     return Converter(
         adapters=IMPLICIT_ADAPTERS
     ).convert(
@@ -16,5 +15,5 @@ def autoconvert(dataset_path: Path, target_type: Type[AbstractDataset]) -> Varia
 
 
 __all__ = [
-    'autoconvert',
+    'autoconvert_dataset',
 ]
