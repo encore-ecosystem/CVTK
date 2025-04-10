@@ -4,7 +4,7 @@ from pathlib import Path
 
 class AbstractDataset(ABC):
     def __init__(self, path: Path):
-        super().__init__(path)
+        self.path = path
 
     @classmethod
     @abstractmethod
