@@ -1,4 +1,5 @@
-from cvtk import IMPLICIT_ADAPTERS, determine_dataset
+from cvtk.supported_datasets import IMPLICIT_ADAPTERS
+from cvtk.utils import determine_dataset
 from cvtk.interfaces import AbstractDataset
 from nodeflow import Converter
 from pathlib import Path
