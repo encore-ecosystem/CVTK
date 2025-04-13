@@ -5,8 +5,8 @@ from typing import Any
 
 class Bbox(ABC):
     def __init__(self, bbox: list[float], value: Any, category: int = -1, confidence: float = 0):
-        super().__init__(value)
         self.bbox       = list(bbox)
+        self.value      = value
         self.category   = category
         self.confidence = confidence
 
