@@ -1,5 +1,5 @@
-from cvtk.supported_datasets.coco.dataset import COCO_Dataset
-from cvtk.supported_datasets.yolo.dataset import YOLO_Dataset
+from src.cvtk.supported_datasets.coco.dataset import COCO_Dataset
+from src.cvtk.supported_datasets.yolo.dataset import YOLO_Dataset
 from nodeflow import Adapter
 from tqdm import tqdm
 
@@ -24,11 +24,11 @@ class COCO2YOLO_Adapter(Adapter):
                 for annotation in variable.anns[split]["annotations"]:
                     category_id = category_id_mapping[category_mapping[annotation["category_id"]]]
                     if annotation["image_id"] == image_id:
-                        if annotation.get("bbox"):
-                            x_center = (annotation["bbox"][0] + annotation["bbox"][2] / 2) / image["width"]
-                            y_center = (annotation["bbox"][1] + annotation["bbox"][3] / 2) / image["height"]
-                            width = annotation["bbox"][2] / image["width"]
-                            height = annotation["bbox"][3] / image["height"]
+                        if annotation.get("stat"):
+                            x_center = (annotation["stat"][0] + annotation["stat"][2] / 2) / image["width"]
+                            y_center = (annotation["stat"][1] + annotation["stat"][3] / 2) / image["height"]
+                            width = annotation["stat"][2] / image["width"]
+                            height = annotation["stat"][3] / image["height"]
                             if yolo_anns[split].get(im_name):
                                 yolo_anns[split][im_name] += f"{category_id} {x_center} {y_center} {width} {height}\n"
                             else:

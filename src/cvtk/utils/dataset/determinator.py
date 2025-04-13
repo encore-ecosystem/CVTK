@@ -1,5 +1,5 @@
-from cvtk.supported_datasets import YOLO_Dataset, COCO_Dataset, MVP_Dataset
-from cvtk import AbstractDataset
+from src.cvtk.supported_datasets import YOLO_Dataset, COCO_Dataset, MVP_Dataset
+from src.cvtk import AbstractDataset
 from pathlib import Path
 
 

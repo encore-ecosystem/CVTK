@@ -1,5 +1,5 @@
-from cvtk.supported_datasets.yolo.dataset import YOLO_Dataset
-from cvtk.supported_datasets.coco.dataset import COCO_Dataset
+from src.cvtk.supported_datasets.yolo.dataset import YOLO_Dataset
+from src.cvtk.supported_datasets.coco.dataset import COCO_Dataset
 
 from shapely.geometry.polygon import Polygon
 
@@ -52,7 +52,7 @@ class YOLO2COCO_Adapter(Adapter):
                             "id": annotation_id,
                             "image_id": image_id,
                             "category_id": int(class_id),
-                            "bbox": [x_min, y_min, bbox_width, bbox_height],
+                            "stat": [x_min, y_min, bbox_width, bbox_height],
                             "area": bbox_width * bbox_height,
                             "iscrowd": 0,
                         }

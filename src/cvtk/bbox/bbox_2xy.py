@@ -1,6 +1,6 @@
 from shapely.geometry import box
 from PIL.Image import Image
-from cvtk.interfaces.bbox import Bbox
+from src.cvtk.interfaces.bbox import Bbox
 
 
 class Bbox_2xy(Bbox):
