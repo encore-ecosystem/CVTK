@@ -4,9 +4,9 @@ from cvtk.interfaces.bbox import Bbox
 
 
 class Bbox_2xy(Bbox):
-    def __init__(self, points: list[float], category: int = -1, confidence: float = 0):
+    def __init__(self, points: list[float], value, category: int = -1, confidence: float = 0):
         assert len(points) == 4
-        super().__init__(points, 0, category, confidence)
+        super().__init__(points, value, category, confidence)
 
     def area(self) -> float:
         return (self.bbox[2] - self.bbox[0]) * (self.bbox[3] - self.bbox[1])
