@@ -1,4 +1,4 @@
-from src.cvtk.interfaces.dataset import AbstractDataset
+from cvtk.interfaces.dataset import AbstractDataset
 from typing import Any, Optional
 from pathlib import Path
 

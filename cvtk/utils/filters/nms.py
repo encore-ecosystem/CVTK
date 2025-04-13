@@ -1,5 +1,5 @@
-from src.cvtk import bbox_iou
-from src.cvtk.interfaces import Bbox
+from cvtk import bbox_iou
+from cvtk.interfaces import Bbox
 
 
 def nms(bboxes: list[Bbox], iou_threshold: float) -> list[Bbox]:

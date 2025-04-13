@@ -1,5 +1,5 @@
-from src.cvtk.utils.stat import bbox_iou
-from src.cvtk import Bbox
+from cvtk.utils.stat import bbox_iou
+from cvtk import Bbox
 
 
 def compute_confusion_matrix(

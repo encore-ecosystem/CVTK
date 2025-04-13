@@ -1,7 +1,7 @@
 from shapely.geometry import Polygon, box
-from src.cvtk.bbox.bbox_2xy import Bbox_2xy
+from cvtk.bbox.bbox_2xy import Bbox_2xy
 from PIL.Image import Image
-from src.cvtk.interfaces.bbox import Bbox
+from cvtk.interfaces.bbox import Bbox
 
 
 class Bbox_CWH(Bbox):

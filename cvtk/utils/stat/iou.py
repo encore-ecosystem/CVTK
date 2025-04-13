@@ -1,4 +1,4 @@
-from src.cvtk.interfaces import Bbox
+from cvtk.interfaces import Bbox
 
 
 def bbox_iou(bbox1: Bbox, bbox2: Bbox) -> float:
