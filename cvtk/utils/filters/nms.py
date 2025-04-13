@@ -1,4 +1,4 @@
-from cvtk import bbox_iou
+from cvtk.utils.stat.iou import bbox_iou
 from cvtk.interfaces import Bbox
 
 
