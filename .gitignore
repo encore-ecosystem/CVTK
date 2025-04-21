@@ -1,3 +1,7 @@
 .idea
 .venv
+.ruff_cache
+.ropeproject
 dist
+
+__pycache__

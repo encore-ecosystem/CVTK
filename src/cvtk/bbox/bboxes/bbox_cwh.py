@@ -1,13 +1,16 @@
-from shapely.geometry import Polygon, box
-from cvtk.bbox.bbox_2xy import Bbox_2xy
+from typing import Any
+
 from PIL.Image import Image
+from shapely.geometry import Polygon, box
+
+from cvtk.bbox.bboxes.bbox_2xy import Bbox_2xy
 from cvtk.interfaces.bbox import Bbox
 
 
 class Bbox_CWH(Bbox):
-    def __init__(self, points: list[float], category: int = -1, confidence: float = 0):
+    def __init__(self, points: list[float], value : Any, category: int = -1, confidence: float = 0):
         assert len(points) == 4
-        super().__init__(points, category, 0, confidence)
+        super().__init__(points, category, value, confidence)
 
     def area(self) -> float:
         return self.bbox[2] * self.bbox[3]
