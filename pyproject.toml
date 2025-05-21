@@ -22,3 +22,6 @@ build-backend = "hatchling.build"
 
 [tool.uv.sources]
 nodeflow = { git = "https://github.com/encore-ecosystem/NodeFlow", branch = "dev" }
+
+[project.scripts]
+cvtk-tui = "cvtk.cli:entrypoint"

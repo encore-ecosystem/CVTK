@@ -29,6 +29,9 @@ class YOLO_Dataset(AbstractDataset):
         for split in ["train", "test", "valid"]:
             annotations[split], images[split] = {}, {}
 
+            if not (path_to_dataset / split).exists():
+                continue
+
             path_ = path_to_dataset / split / "labels"
             for label_file_path in path_.glob("*.txt"):
                 with open(label_file_path, "r") as label_file:
@@ -57,7 +60,7 @@ class YOLO_Dataset(AbstractDataset):
                 )
 
                 with open(save_path / split / 'labels' / f"{image_path.stem}.txt", 'w') as label_file:
-                    anns_str = self.anns[split][image_path.stem].__str__()[2:-2].replace("'", '').replace(', ', '\n')
+                    anns_str = self.anns[split][image_path.stem + '.txt'].__str__()[2:-2].replace("'", '').replace(', ', '\n')
                     label_file.write(anns_str)
 
         with open(save_path / 'data.yaml', "w") as yaml_file:
