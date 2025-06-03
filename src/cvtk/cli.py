@@ -1,6 +1,8 @@
 from pathlib import Path
 from cvtk.supported_datasets import YOLO_Dataset, MVP_Dataset
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image, ImageDraw
+
+import random
 import os
 from cvtk.bbox import Bbox_2xy
 from tqdm import tqdm
@@ -84,9 +86,56 @@ def visualize_dataset():
             image.save(split_path / image_path.name)
 
 
+def shrink_dataset():
+    current_dir = Path.cwd()
+    datasets = os.listdir(current_dir)
+    datasets = [current_dir / dataset for dataset in datasets if YOLO_Dataset.is_dataset(current_dir / dataset)]
+    
+    for i, dataset in enumerate(datasets):
+        print(f"[{i}]: {dataset.name}")
+
+    index = int(input(">>> "))
+    if not 0 <= index <= len(datasets):
+        print("Bad index")
+        exit(-1)
+    
+    dataset = YOLO_Dataset.read(path_to_dataset=datasets[index])
+    
+    output_name = input("Enter output name: ")
+    output_path = current_dir / output_name
+    output_path.mkdir()
+    
+    split = input("enter target split (train, test or valid): ")
+    assert split in ("train", "test", "valid")
+    
+    target_count = int(input("enter target count: "))
+    assert target_count >= 0
+
+    split_path = output_path / split
+    split_path.mkdir()
+    
+    all_images = list(dataset.images[split].keys())
+    if len(all_images) < target_count:
+        print(f"There no images to remove! target={target_count} but dataset have {len(all_images)}")
+        exit(1)
+
+    sparced_images = random.choices(all_images, k=target_count)
+    saved_images = {}
+    saved_anns = {}
+    for image_stem in tqdm(sparced_images):
+        saved_images[image_stem] = dataset.images[split][image_stem]
+        saved_anns[f"{image_stem}.txt"] = dataset.anns[split][f"{image_stem}.txt"]
+
+    dataset.images[split] = saved_images
+    dataset.anns[split]   = saved_anns
+    
+    dataset.write(output_path)    
+
+
 def entrypoint():
     print("0: Sparce Yolo Dataset Classes")
     print("1: Visualize MVP Dataset")
+    print("2: Shirnk split of Yolo Dataset")
 
     menu = int(input(">>> "))
     match menu:
@@ -94,6 +143,8 @@ def entrypoint():
             sparce_class()
         case 1:
             visualize_dataset()
+        case 2:
+            shrink_dataset()
         case _:
             print("Unknown mode")
             exit(-1)
