@@ -132,10 +132,55 @@ def shrink_dataset():
     dataset.write(output_path)    
 
 
+def remove_classes():
+    current_dir = Path.cwd()
+    datasets = os.listdir(current_dir)
+    datasets = [current_dir / dataset for dataset in datasets if YOLO_Dataset.is_dataset(current_dir / dataset)]
+    
+    for i, dataset in enumerate(datasets):
+        print(f"[{i}]: {dataset.name}")
+
+    index = int(input(">>> "))
+    if not 0 <= index <= len(datasets):
+        print("Bad index")
+        exit(-1)
+    
+    dataset = YOLO_Dataset.read(path_to_dataset=datasets[index])
+    names = dataset.data_yaml["names"]
+
+    to_delete = set()
+    for name in names:
+        if input(f"Remove class {name}? (Y/n)").lower() == "y":
+            to_delete.add(name)    
+    
+    print("Removing classes: ", to_delete)
+    if not (input("Ok? y/n: ").lower() == "y"):
+        exit(0)
+
+    classes = list(set(names) - to_delete)
+    dataset.data_yaml["nc"] = len(classes)
+    dataset.data_yaml["names"] = classes
+
+    for split in ("train", "test", "valid"):
+        for key, list_value in dataset.anns[split].items():
+            new_list_value = []
+            for value in list_value:
+                value = value.split()
+                old_class = names[int(value[0])]
+                if old_class not in classes:
+                    continue
+                value[0] = str(classes.index(old_class))
+                new_list_value.append(" ".join(value))
+            dataset.anns[split][key] = new_list_value
+    
+    output_name = input("Enter output name: ")
+    dataset.write(current_dir / output_name)
+
 def entrypoint():
     print("0: Sparce Yolo Dataset Classes")
     print("1: Visualize MVP Dataset")
     print("2: Shirnk split of Yolo Dataset")
+    print("3: Remove class from Yolo Dataset")
 
     menu = int(input(">>> "))
     match menu:
@@ -145,6 +190,8 @@ def entrypoint():
             visualize_dataset()
         case 2:
             shrink_dataset()
+        case 3:
+            remove_classes()
         case _:
             print("Unknown mode")
             exit(-1)
